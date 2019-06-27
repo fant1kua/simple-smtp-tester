@@ -64,8 +64,20 @@ server.on('error', err => {
     logger.error('SMTP server error', err);
 });
 
-const argv = yargs(['--port'].concat(JSON.parse(process.env.npm_config_argv).remain)).argv;
-const port = Number.isInteger(argv.port) ? argv.port : process.env.npm_package_config_port;
+
+let args = ['--port'];
+if (process.env.npm_config_argv) {
+	args = args.concat(JSON.parse(process.env.npm_config_argv).remain);
+}
+const argv = yargs(args).argv;
+let port;
+if (Number.isInteger(argv.port)) {
+	port = argv.port;
+} else if (process.env.npm_package_config_port) {
+	port = process.env.npm_package_config_port;
+} else {
+	port = 32284
+}
 
 server.listen(port, err => {
 	if (err) {
