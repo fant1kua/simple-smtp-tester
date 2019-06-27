@@ -1,0 +1,21 @@
+{
+  "name": "simple-smtp-tester",
+  "version": "1.0.0",
+  "description": "Simple SMTP tester",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "fantom",
+  "license": "MIT",
+  "dependencies": {
+    "mailparser": "2.1.0",
+    "pino": "^4.10.2",
+    "preview-email": "0.0.6",
+    "smtp-server": "3.4.1",
+    "yargs": "10.0.3"
+  },
+  "config": {
+    "port": 4651
+  }
+}
